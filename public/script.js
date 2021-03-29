@@ -1,6 +1,4 @@
 /* eslint-disable max-len */
-
-
   //taking in map 
   async function dataHandler(){
    
@@ -20,14 +18,6 @@
       table.append(appendItem);
       
     });
-
-
-
-    
-   
-
-    //targetList.append(appendItem);
- 
   }
   
     async function windowActions(){
