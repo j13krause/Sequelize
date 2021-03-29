@@ -4,7 +4,7 @@ import apiRoutes from './routes/apiRoutes.js';
 
 const app = express();
 
-const port = process.env.port || 3000;
+const PORT = process.env.port || 3000;
 const newFolder = 'public';
 
 app.use(express.urlencoded({ extended: true }));
@@ -13,16 +13,16 @@ app.use(express.static(newFolder));
 
 app.use('/api', apiRoutes);
 
-async function startServer() {
+async function bootServer() {
   try {
     const mysql = await db.sequelizeDB;
     await mysql.sync();
-    app.listen(port, () => {
-      console.log(`Listening on: http//localhost:${port}`);
+    app.listen(PORT, () => {
+      console.log(`Listening on: http//localhost:${PORT}`);
     });
   } catch (err) {
     console.error(err);
   }
 }
 
-startServer();
+bootServer();
