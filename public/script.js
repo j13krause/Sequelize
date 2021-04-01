@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable camelcase */
 /* eslint-disable max-len */
-// taking in map
+
 async function dataHandler() {
   // getting data from the api
   const request = await fetch('/api/dining');
