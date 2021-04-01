@@ -13,8 +13,9 @@
     data.forEach(element => {
       console.log(element.hall_name);
       console.log(element.hall_address);
+      console.log(element.hall_id)
       const appendItem = document.createElement('tr');
-      appendItem.innerHTML = `<td>${element.hall_name}</td><td>${element.hall_address}</td>`;
+      appendItem.innerHTML = `<td>${element.hall_id}</td><td>${element.hall_name}</td><td>${element.hall_address}</td>`;
       table.append(appendItem);
       
     });
