@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable quotes */
 /* eslint-disable no-console */
 import express from "express";
@@ -13,8 +14,7 @@ const router = express.Router();
 router.get("/dining", async (req, res) => {
   try {
     const halls = await db.DiningHall.findAll();
-    const reply =
-      halls.length > 0 ? { data: halls } : { message: "no results found" };
+    const reply = halls.length > 0 ? { data: halls } : { message: "no results found" };
     res.json(reply);
   } catch (err) {
     console.error(err);
@@ -26,8 +26,8 @@ router.get("/dining/:hall_id", async (req, res) => {
   try {
     const hall = await db.DiningHall.findAll({
       where: {
-        hall_id: req.params.hall_id,
-      },
+        hall_id: req.params.hall_id
+      }
     });
     res.json(hall);
   } catch (err) {
@@ -41,7 +41,7 @@ router.post("/dining", async (req, res) => {
     const newDining = await db.DiningHall.create({
       hall_id: req.body.hall_id,
       hall_name: req.body.hall_name,
-      hall_location: req.body.hall_location,
+      hall_location: req.body.hall_location
     });
     res.json(newDining);
   } catch (err) {
@@ -54,8 +54,8 @@ router.delete("/dining/:hall_id", async (req, res) => {
   try {
     await db.DiningHall.destroy({
       where: {
-        hall_id: req.params.hall_id,
-      },
+        hall_id: req.params.hall_id
+      }
     });
     res.send("Successfully Deleted");
   } catch (err) {
@@ -69,12 +69,12 @@ router.put("/dining", async (req, res) => {
     await db.DiningHall.update(
       {
         hall_name: req.body.hall_name,
-        hall_location: req.body.hall_location,
+        hall_location: req.body.hall_location
       },
       {
         where: {
-          hall_id: req.body.hall_id,
-        },
+          hall_id: req.body.hall_id
+        }
       }
     );
     res.send("Successfully Updated");
@@ -101,8 +101,8 @@ router.get("/meals/:meal_id", async (req, res) => {
   try {
     const meals = await db.Meals.findAll({
       where: {
-        meal_id: req.params.meal_id,
-      },
+        meal_id: req.params.meal_id
+      }
     });
     res.json(meals);
   } catch (err) {
@@ -116,12 +116,12 @@ router.put("/meals", async (req, res) => {
     await db.Meals.update(
       {
         meal_name: req.body.meal_name,
-        meal_category: req.body.meal_category,
+        meal_category: req.body.meal_category
       },
       {
         where: {
-          meal_id: req.body.meal_id,
-        },
+          meal_id: req.body.meal_id
+        }
       }
     );
     res.send("Meal Successfully Updated");
@@ -148,8 +148,8 @@ router.get("/macros/:meal_id", async (req, res) => {
   try {
     const meals = await db.Macros.findAll({
       where: {
-        meal_id: req.params.meal_id,
-      },
+        meal_id: req.params.meal_id
+      }
     });
     res.json(meals);
   } catch (err) {
@@ -171,12 +171,12 @@ router.put("/macros", async (req, res) => {
         sodium: req.body.sodium,
         carbs: req.body.carbs,
         protein: req.body.protein,
-        fat: req.body.fat,
+        fat: req.body.fat
       },
       {
         where: {
-          meal_id: req.body.meal_id,
-        },
+          meal_id: req.body.meal_id
+        }
       }
     );
     res.send("Successfully Updated");
@@ -203,8 +203,8 @@ router.get("/restrictions/:restriction_id", async (req, res) => {
   try {
     const restrictions = await db.DietaryRestrictions.findAll({
       where: {
-        restriction_id: req.params.restriction_id,
-      },
+        restriction_id: req.params.restriction_id
+      }
     });
     res.json(restrictions);
   } catch (err) {
@@ -220,7 +220,7 @@ router.get("/restrictions/:restriction_id", async (req, res) => {
 router.get("/custom", async (req, res) => {
   try {
     const result = await db.sequelizeDB.query(req.body.query, {
-      type: sequelize.QueryTypes.SELECT,
+      type: sequelize.QueryTypes.SELECT
     });
     console.log("Result: ", result);
     res.json(result);
